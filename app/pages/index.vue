@@ -6,7 +6,7 @@
       :loop="true"
       :allow-touch-move="false"
       :no-swiping="true"
-      :speed="1"
+      :speed="0"
       class="mySwiper"
       @swiper="onSwiper"
       @slide-change="onSlideChange"

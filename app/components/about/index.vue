@@ -1,6 +1,6 @@
 <!-- About.vue -->
 <template>
-  <div class="p-3 h-full flex md:flex-col justify-between flex-col-reverse">
+  <div class="p-3 md:p-5 h-full flex md:flex-col justify-between flex-col-reverse">
     <AboutNavigation 
       :data="data"
       :parent-swiper-instance="parentSwiperInstance"

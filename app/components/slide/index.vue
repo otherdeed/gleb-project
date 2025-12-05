@@ -1,14 +1,14 @@
 <!-- Slide.vue -->
 <template>
   <div class="grid grid-rows-[auto_1fr] sm:grid-rows-[auto_1fr] md:grid-cols-2 md:grid-rows-1 h-screen relative">
-    <div class="flex flex-col justify-between p-3 absolute left-0 top-0 z-10 min-h-screen">
+    <div class="hidden md:flex flex-col justify-between p-3 md:p-5 absolute left-0 top-0 z-10 min-h-screen text-white">
       <div class="flex flex-col">
         <span>Глеб Закиров,</span>
         <span>диджитал-дизайнер</span>
       </div>
-      <div class="flex flex-col">
-        <a>Телеграм</a>
-        <a>Инстаграм</a>
+      <div class="flex items-start">
+        <a>Телеграм</a>,
+        <a class="ml-1">Имеил</a>
       </div>
     </div>
     <div class="overflow-y-auto bg-white 
