@@ -44,7 +44,7 @@
             :class="index === 0 ? 'object-contain' : 'object-cover'" />
         </div>
       </div>
-      <div class="h-[400px]">
+      <div v-if="isMobile" class="h-[400px]">
         <About 
           v-if="parentSwiperInstance"
           :data="data"
