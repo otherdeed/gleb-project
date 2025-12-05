@@ -38,12 +38,18 @@
         @swiper="onInnerSwiper"
       >
         <SwiperSlide 
-          v-for="(color, i) in slideColors" 
-          :key="i"
-          :style="{ backgroundColor: color }"
+          v-for="(slide, index) in data.slides" 
+          :key="index"
           class="slide"
         >
-          Slide {{ i + 1 }}
+          <div class="relative w-full h-full">
+            <!-- Основное изображение -->
+            <img 
+              :src="slide" 
+              :alt="`Slide ${index + 1} - ${data.title}`"
+              class="absolute inset-0 w-full h-full object-cover"
+            />
+          </div>
         </SwiperSlide>
       </Swiper>
     </div>
@@ -54,6 +60,7 @@
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Mousewheel } from 'swiper/modules';
 import 'swiper/css';
+import { ref, onMounted, onUnmounted } from 'vue';
 
 const props = defineProps({
   data: {
@@ -69,11 +76,6 @@ const props = defineProps({
 const innerSwiperRef = ref(null);
 const innerSwiperInstance = ref(null);
 const containerRef = ref(null);
-
-const slideColors = ref([
-  '#FF6B6B', '#4ECDC4', '#FFD166', '#06D6A0', '#118AB2',
-  '#EF476F', '#073B4C', '#7209B7', '#F3722C'
-]);
 
 const modules = [Mousewheel];
 
@@ -112,7 +114,7 @@ onUnmounted(() => {
 
 <style scoped>
 .slide {
-  display: flex;
-  justify-content: center;
+  height: 100%;
+  width: 100%;
 }
 </style>
