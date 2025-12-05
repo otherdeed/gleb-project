@@ -1,6 +1,8 @@
-<!-- Slide.vue -->
 <template>
-  <div class="grid grid-rows-[auto_1fr] sm:grid-rows-[auto_1fr] md:grid-cols-2 md:grid-rows-1 h-screen relative">
+  <div 
+    :class="isMobile ? 'flex flex-col' : 'grid grid-rows-[auto_1fr] sm:grid-rows-[auto_1fr] md:grid-cols-2 md:grid-rows-1'"
+    class="h-screen relative"
+  >
     <div class="hidden md:flex flex-col justify-between p-3 md:p-5 absolute left-0 top-0 z-10 min-h-screen text-white">
       <div class="flex flex-col">
         <span>Глеб Закиров,</span>
@@ -8,21 +10,56 @@
       </div>
       <div class="flex items-start">
         <a>Телеграм</a>,
-        <a class="ml-1">Имеил</a>
+        <a class="ml-1">Инстаграм</a>
       </div>
     </div>
-    <div class="overflow-y-auto bg-white 
-                order-1 md:order-2
-                h-[70vh] sm:h-[40vh] md:h-full">
-      <About 
-        v-if="parentSwiperInstance"
-        :data="data"
-        :parent-swiper-instance="parentSwiperInstance"
-      />
+    
+    <div 
+      ref="mainContentRef"
+      :class="{
+        'overflow-y-auto': true,
+        'order-1 md:order-2 h-[70vh] sm:h-[40vh] md:h-full': !isMobile 
+      }"
+      class="bg-white"
+    >
+      <div :class="isMobile ? 'h-[70vh]' : 'h-full'">
+        <About 
+          v-if="parentSwiperInstance"
+          :data="data"
+          :parent-swiper-instance="parentSwiperInstance"
+          class="h-full"
+        />
+      </div>
+
+      <div v-if="isMobile" class="w-full flex flex-col">
+        <div 
+          v-for="(slide, index) in data.slides" 
+          :key="index"
+          class="w-full"
+          :class="index === 0 ? 'h-auto' : 'h-[50vh]'" >
+          <img 
+            :src="slide" 
+            :alt="`Slide ${index + 1} - ${data.title}`"
+            class="w-full h-full"
+            :class="index === 0 ? 'object-contain' : 'object-cover'" />
+        </div>
+      </div>
+      <div class="h-[400px]">
+        <About 
+          v-if="parentSwiperInstance"
+          :data="data"
+          :parent-swiper-instance="parentSwiperInstance"
+          :show-footer="false"
+        />
+      </div>
     </div>
-    <div class="overflow-y-auto 
-                order-2 md:order-1
-                h-[30vh] sm:h-[60vh] md:h-full">
+    
+    <div 
+      v-if="!isMobile"
+      class="overflow-y-auto 
+            order-2 md:order-1
+            h-[30vh] sm:h-[60vh] md:h-full"
+    >
       <Swiper
         ref="innerSwiperRef"
         :direction="'vertical'"
@@ -43,7 +80,6 @@
           class="slide"
         >
           <div class="relative w-full h-full">
-            <!-- Основное изображение -->
             <img 
               :src="slide" 
               :alt="`Slide ${index + 1} - ${data.title}`"
@@ -57,11 +93,13 @@
 </template>
 
 <script setup>
+// ... (скрипт секция без изменений)
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Mousewheel } from 'swiper/modules';
 import 'swiper/css';
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted, computed, nextTick } from 'vue';
 
+// --- Props ---
 const props = defineProps({
   data: {
     type: Object,
@@ -73,20 +111,36 @@ const props = defineProps({
   }
 });
 
+// --- State and Refs ---
 const innerSwiperRef = ref(null);
 const innerSwiperInstance = ref(null);
-const containerRef = ref(null);
+const mainContentRef = ref(null); 
 
 const modules = [Mousewheel];
 
-// Сохраняем инстанс внутреннего свайпера
+// --- Responsive Logic ---
+const screenWidth = ref(0);
+const isMounted = ref(false);
+
+const isMobile = computed(() => {
+    if (!isMounted.value) return false; 
+    return screenWidth.value < 768; 
+});
+
+const updateScreenWidth = () => {
+  if (typeof window !== 'undefined') {
+    screenWidth.value = window.innerWidth;
+  }
+};
+
+// --- Swiper Logic ---
 const onInnerSwiper = (swiper) => {
   innerSwiperInstance.value = swiper;
 };
 
-// Обработчик колесика мыши только для внутреннего слайдера
+// Обработчик колесика мыши - только для Desktop/Tablet
 const handleWheel = (event) => {
-  if (!innerSwiperInstance.value) return;
+  if (isMobile.value || !innerSwiperInstance.value) return; 
   
   event.preventDefault();
   
@@ -97,18 +151,21 @@ const handleWheel = (event) => {
   }
 };
 
+// --- Lifecycle Hooks ---
 onMounted(() => {
-  document.addEventListener('wheel', handleWheel, { passive: false });
-  if (containerRef.value) {
-    containerRef.value.addEventListener('wheel', handleWheel, { passive: false });
-  }
+  isMounted.value = true;
+  
+  nextTick(() => {
+    updateScreenWidth(); 
+    
+    window.addEventListener('resize', updateScreenWidth);
+    document.addEventListener('wheel', handleWheel, { passive: false });
+  });
 });
 
 onUnmounted(() => {
+  window.removeEventListener('resize', updateScreenWidth);
   document.removeEventListener('wheel', handleWheel);
-  if (containerRef.value) {
-    containerRef.value.removeEventListener('wheel', handleWheel);
-  }
 });
 </script>
 

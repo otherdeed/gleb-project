@@ -8,7 +8,7 @@
       ← {{ data.previousProject }}
     </button>
     
-    <span>{{ data.title }}</span>
+    <span v-if="showFooter">{{ data.title }}</span>
     
     <button 
       @click="goToNext"
@@ -30,13 +30,15 @@ const props = defineProps({
   parentSwiperInstance: {
     type: Object,
     default: null
+  },
+  showFooter: {
+    type: Boolean,
+    default: true
   }
 });
 
 const goToPrevious = () => {
-  console.log('Go to previous clicked');
   if (props.parentSwiperInstance) {
-    console.log('Calling slidePrev()');
     props.parentSwiperInstance.slidePrev();
   } else {
     console.error('parentSwiperInstance is null!');
@@ -44,9 +46,7 @@ const goToPrevious = () => {
 };
 
 const goToNext = () => {
-  console.log('Go to next clicked');
   if (props.parentSwiperInstance) {
-    console.log('Calling slideNext()');
     props.parentSwiperInstance.slideNext();
   } else {
     console.error('parentSwiperInstance is null!');
