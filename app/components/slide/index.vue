@@ -115,8 +115,6 @@ const props = defineProps({
 
 const emit = defineEmits(['next', 'prev']);
 
-console.log(props.currentIndex);
-
 // --- State and Refs ---
 const innerSwiperRef = ref(null);
 const innerSwiperInstance = ref(null);

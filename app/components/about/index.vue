@@ -46,7 +46,4 @@ const props = defineProps({
 });
 
 const emit = defineEmits(['next', 'prev']);
-
-console.log('About data:', props.data);
-console.log('About currentIndex:', props.currentIndex);
 </script>

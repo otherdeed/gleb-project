@@ -17,8 +17,6 @@ import { data } from '~/data';
 
 const currentIndex = ref(0);
 
-console.log(data[currentIndex.value]);
-
 // Функции для навигации
 const goToNext = () => {
   currentIndex.value = (currentIndex.value + 1) % data.length;
