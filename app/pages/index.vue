@@ -1,49 +1,60 @@
 <template>
-  <div>
-    <Swiper 
-      ref="mainSwiperRef"
-      :modules="modules" 
-      :loop="true"
-      :allow-touch-move="false"
-      :no-swiping="true"
-      :speed="0"
-      class="mySwiper"
-      @swiper="onSwiper"
-      @slide-change="onSlideChange"
-    >
-      <SwiperSlide 
-        v-for="(item, index) in data" 
-        :key="index"
-        class="slide"
-      >
-        <Slide 
-          :data="item" 
-          :parent-swiper-instance="swiperInstance"
-          :current-index="currentSlideIndex"
-        />
-      </SwiperSlide>
-    </Swiper>
+  <div class="relative w-full h-screen">
+    <!-- Только текущий слайд в DOM (самый производительный вариант) -->
+    <Slide 
+      :key="currentIndex"
+      :data="data[currentIndex]"
+      :current-index="currentIndex"
+      @next="goToNext"
+      @prev="goToPrev"
+    />
   </div>
 </template>
 
 <script setup>
-import { Swiper, SwiperSlide } from 'swiper/vue';
-
-import 'swiper/css';
+import { ref, onMounted, onUnmounted } from 'vue';
 import { data } from '~/data';
 
-const swiperInstance = ref(null);
-const currentSlideIndex = ref(0);
-const modules = [];
+const currentIndex = ref(0);
 
-const onSwiper = (swiper) => {
-  swiperInstance.value = swiper;
-  console.log('Main swiper instance set:', swiper);
+console.log(data[currentIndex.value]);
+
+// Функции для навигации
+const goToNext = () => {
+  currentIndex.value = (currentIndex.value + 1) % data.length;
 };
 
-const onSlideChange = () => {
-  if (swiperInstance.value) {
-    currentSlideIndex.value = swiperInstance.value.activeIndex;
+const goToPrev = () => {
+  currentIndex.value = (currentIndex.value - 1 + data.length) % data.length;
+};
+
+const goToSlide = (index) => {
+  currentIndex.value = index;
+};
+
+// Навигация по клавишам
+const handleKeyDown = (event) => {
+  if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+    goToNext();
+  } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+    goToPrev();
   }
 };
+
+
+onMounted(() => {
+  window.addEventListener('keydown', handleKeyDown);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('keydown', handleKeyDown);
+});
+
+// Экспортируем функции навигации
+defineExpose({
+  goToNext,
+  goToPrev,
+  goToSlide,
+  currentIndex
+});
 </script>

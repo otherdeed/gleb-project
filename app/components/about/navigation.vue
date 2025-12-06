@@ -1,4 +1,3 @@
-<!-- AboutNavigation.vue -->
 <template>
   <header class="flex justify-between items-center">
     <button 
@@ -8,7 +7,7 @@
       ← {{ data.previousProject }}
     </button>
     
-    <span v-if="showFooter">{{ data.title }}</span>
+    <span class="hidden md:block">{{ data.title }}</span>
     
     <button 
       @click="goToNext"
@@ -20,7 +19,7 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue';
+import { defineProps, defineEmits } from 'vue';
 
 const props = defineProps({
   data: {
@@ -31,17 +30,19 @@ const props = defineProps({
     type: Object,
     default: null
   },
-  showFooter: {
-    type: Boolean,
-    default: true
+  currentIndex: {
+    type: Number,
+    default: null
   }
 });
+
+const emit = defineEmits(['next', 'prev']);
 
 const goToPrevious = () => {
   if (props.parentSwiperInstance) {
     props.parentSwiperInstance.slidePrev();
   } else {
-    console.error('parentSwiperInstance is null!');
+    emit('prev'); // Используем emit если нет parentSwiperInstance
   }
 };
 
@@ -49,7 +50,7 @@ const goToNext = () => {
   if (props.parentSwiperInstance) {
     props.parentSwiperInstance.slideNext();
   } else {
-    console.error('parentSwiperInstance is null!');
+    emit('next'); // Используем emit если нет parentSwiperInstance
   }
 };
 </script>

@@ -24,9 +24,11 @@
     >
       <div :class="isMobile ? 'h-[70vh]' : 'h-full'">
         <About 
-          v-if="parentSwiperInstance"
+          v-if="data"
           :data="data"
-          :parent-swiper-instance="parentSwiperInstance"
+          :current-index="currentIndex"
+          @next="$emit('next')"
+          @prev="$emit('prev')"
           class="h-full"
         />
       </div>
@@ -46,9 +48,11 @@
       </div>
       <div v-if="isMobile" class="h-[400px]">
         <About 
-          v-if="parentSwiperInstance"
+          v-if="data"
           :data="data"
-          :parent-swiper-instance="parentSwiperInstance"
+          :current-index="currentIndex"
+          @next="$emit('next')"
+          @prev="$emit('prev')"
           :show-footer="false"
         />
       </div>
@@ -93,11 +97,9 @@
 </template>
 
 <script setup>
-// ... (скрипт секция без изменений)
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Mousewheel } from 'swiper/modules';
 import 'swiper/css';
-import { ref, onMounted, onUnmounted, computed, nextTick } from 'vue';
 
 // --- Props ---
 const props = defineProps({
@@ -105,11 +107,15 @@ const props = defineProps({
     type: Object,
     required: true
   },
-  parentSwiperInstance: {
-    type: Object,
+  currentIndex: {
+    type: Number,
     default: null
   }
 });
+
+const emit = defineEmits(['next', 'prev']);
+
+console.log(props.currentIndex);
 
 // --- State and Refs ---
 const innerSwiperRef = ref(null);
