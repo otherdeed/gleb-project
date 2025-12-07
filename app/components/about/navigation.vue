@@ -7,7 +7,7 @@
       ← {{ data.previousProject }}
     </button>
     
-    <span>{{ data.title }}</span>
+    <span class="absolute left-1/2 transform -translate-x-1/2">{{ data.title }}</span>
     
     <button 
       @click="goToNext"
@@ -19,7 +19,6 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits } from 'vue';
 
 const props = defineProps({
   data: {
