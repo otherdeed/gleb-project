@@ -1,12 +1,10 @@
 <template>
   <header class="flex justify-between items-top">
     <div class="flex flex-col">
-      <span>Глеб Закиров,</span>
-      <span>диджитал-дизайнер</span>
+      <a href="/#глеб-закиров">Глеб Закиров</a>
     </div>
     <div class="flex items-end" :class="{ 'items-start': showFooter }">
-      <a>Телеграм</a>,
-      <a class="ml-1">Инстаграм</a>
+      <a href="">Написать мне</a>
     </div>
   </header>
 </template>

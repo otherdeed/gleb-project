@@ -54,3 +54,28 @@ const goToNext = () => {
   }
 };
 </script>
+
+<style scoped>
+button {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  padding-bottom: 2px;
+}
+
+button::after {
+  transform: scaleX(0);  
+}
+
+button:hover::after {
+  content: '';
+  position: absolute;
+  bottom: 3px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: currentColor;
+  transform: scaleX(1);
+}
+</style>
