@@ -32,6 +32,10 @@ a {
 }
 
 a::after {
+  transform: scaleX(0);  
+}
+
+a:hover::after {
   content: '';
   position: absolute;
   bottom: 3px;
@@ -40,8 +44,4 @@ a::after {
   height: 1px;
   background-color: currentColor;
   transform: scaleX(1);
-}
-
-a:hover::after {
-  transform: scaleX(0);
 }
