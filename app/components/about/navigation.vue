@@ -7,7 +7,7 @@
       ← {{ data.previousProject }}
     </button>
     
-    <span class="hidden md:block">{{ data.title }}</span>
+    <span>{{ data.title }}</span>
     
     <button 
       @click="goToNext"

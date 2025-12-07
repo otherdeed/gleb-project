@@ -22,7 +22,7 @@
       }"
       class="bg-white"
     >
-      <div :class="isMobile ? 'h-[70vh]' : 'h-full'">
+      <div :class="isMobile ? 'h-[80vh]' : 'h-full'">
         <About 
           v-if="data"
           :data="data"
@@ -35,10 +35,11 @@
 
       <div v-if="isMobile" class="w-full flex flex-col">
         <div 
-          v-for="(slide, index) in data.slides" 
+          v-for="(slide, index) in data.slides"
           :key="index"
-          class="w-full"
-          :class="index === 0 ? 'h-auto' : 'h-[50vh]'" >
+          class="w-full flex justify-center items-center bg-black"
+          :class="index === 0 ? 'aspect-4/3 h-auto' : 'aspect-4/3'"
+        >  
           <img 
             :src="slide" 
             :alt="`Slide ${index + 1} - ${data.title}`"
@@ -46,7 +47,7 @@
             :class="index === 0 ? 'object-contain' : 'object-cover'" />
         </div>
       </div>
-      <div v-if="isMobile" class="h-[400px]">
+      <div v-if="isMobile" class="h-[140px]">
         <About 
           v-if="data"
           :data="data"

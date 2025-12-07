@@ -1,6 +1,6 @@
 <template>
   <div 
-    :class="`p-3 md:p-5 h-full flex md:flex-col justify-between ${showFooter ? 'flex-col-reverse' : 'flex-col'} `"
+    :class="`p-3 md:p-5 h-full flex md:flex-col-reverse justify-between ${showFooter ? 'flex-col-reverse' : 'flex-col'} `"
   >
     <AboutNavigation 
       :data="data"
@@ -17,7 +17,6 @@
       class="shrink-0" 
     />
     <AboutHeader 
-      class="md:hidden"
       :show-footer="showFooter"
     />
   </div>
