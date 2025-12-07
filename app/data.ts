@@ -2,10 +2,10 @@ export const data = [
   {
     nextProject: 'Greek Legends',
     previousProject: 'Big data house',
-    title: 'Глеб Закиров',
-    year: 'Глеб',
+    title: 'Обо мне',
+    year: 'Глеб Закиров',
     online: '2005',
-    tasks: 'Мне 20 лет. Живу в Санкт-Петербурге. На данный момент работаю на фрилансе. Работаю в дизайне 3 года. За это время успел поработать в большом количестве компаний и проектов. Женат',
+    tasks: 'Я дизайнер из Санкт-Петербурга. В основном делаю разного рода интерфейсы, сайты и приложения. Но помимо этого создаю моушн для своих работ. Работаю с печатью. Собираю сайты на Тильде. Умею делать несложные тридэшки. В последнее время изучаю html и css <br> Помимо всего, я учусь на инженера по техносферной безопасности, вкусно готовлю, жму сотку от груди, не боюсь выступать на сцене и с переменным успехом веду Телеграм канал',
     solution: 'Figma, Principle, Illustrator, Tilda, Photoshop, Blender',
     result: 'Uralgeo, Greek Legend, Big Data House, Grokhotov studio, Зелёный вектор, Мегамаркет, Альфа-Страхование, Цифровая Лига, Summer Night Conf, Космостом, Simplex, Северсталь, Кировск.Гайд, Наутико, Курс Энди, Тимур.Фронтенд, Кэт, Nes',
     opinion: 'Evitan, Endy, Мегамаркет, Grokhotov, Uplab, Dobropost',
@@ -14,7 +14,7 @@ export const data = [
   },
   {
     nextProject: 'Big data house',
-    previousProject: 'Глеб Закиров',
+    previousProject: 'Обо мне',
     title: 'Greek Legends',
     year: '2023',
     online: 'Лендинг для мифологической онлайн-игры',
@@ -27,7 +27,7 @@ export const data = [
   },
   {
     nextProject: 'Глеб Закиров',
-    previousProject: 'Greek Legends',
+    previousProject: 'Обо мне',
     title: 'Big data house',
     year: '2022',
     online: 'Корпоративный портал для аналитики больших данных',
