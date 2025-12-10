@@ -1,26 +1,51 @@
 <template>
   <div class="grid grid-cols-[auto_1fr] gap-x-3 md:gap-x-5">
-    <span class="whitespace-nowrap">{{data.isAbout ? 'Имя' : 'Год'}}</span>
-    <span>{{ data.year }}</span>
+    <!-- Год/Онлайн -->
+    <template v-if="!data.isAbout">
+      <span class="whitespace-nowrap">Год</span>
+      <span>{{ data.year }}</span>
+      
+      <span class="whitespace-nowrap">Онлайн</span>
+      <component
+        :is="data.online.link ? 'a' : 'span'"
+        :href="data.online.link ? 'https://' + data.online.link : null"
+        target="_blank"
+        :class="[
+          'inline-block',
+          data.online.link 
+            ? 'max-w-max' 
+            : ''
+        ]"
+      >
+        {{ data.online.text }}
+      </component>
+    </template>
 
-    <span v-if="!data.isAbout" class="whitespace-nowrap">{{data.isAbout ? 'Год' : 'Онлайн'}}</span>
-    <span v-if="data.isAbout"></span>
-    <span v-if="data.isAbout"></span>
-    <span v-if="!data.isAbout">{{ data.online }}</span>
-
-    <span class="whitespace-nowrap mt-3 md:mt-5">{{data.isAbout ? 'Пара слов' : 'Задачи'}}</span>
+    <!-- Задачи/Заметка -->
+    <span class="whitespace-nowrap mt-3 md:mt-5">
+      {{ data.isAbout ? 'Заметка' : 'Задачи' }}
+    </span>
     <div class="mt-3 md:mt-5" v-html="data.tasks" />
 
-    <span :class="`whitespace-nowrap ${data.isAbout ? 'mt-3 md:mt-5' : ''}`">{{data.isAbout ? 'Навыки' : 'Решение'}}</span>
-    <span :class="data.isAbout ? 'mt-3 md:mt-5' : ''">{{ data.solution }}</span>
+    <!-- Решение/Навыки -->
+    <span :class="['whitespace-nowrap', data.isAbout ? 'mt-3 md:mt-5' : '']">
+      {{ data.isAbout ? 'Навыки' : 'Решение' }}
+    </span>
+    <span :class="data.isAbout ? 'mt-3 md:mt-5' : ''">
+      {{ data.solution || '' }}
+    </span>
 
-    <span v-if="!data.isAbout" class="whitespace-nowrap mt-3 md:mt-5">{{data.isAbout ? 'Проекты' : 'Результат'}}</span>
-    <span v-if="!data.isAbout" class="mt-3 md:mt-5">{{ data.result }}</span>
-    <span v-if="!data.isAbout"></span>
-    <span v-if="!data.isAbout"></span>
+    <!-- Команда/Проекты -->
+    <template v-if="!data.isAbout">
+      <span class="whitespace-nowrap mt-3 md:mt-5">Команда</span>
+      <span class="mt-3 md:mt-5">{{ data.team }}</span>
+    </template>
 
-    <span :class="`whitespace-nowrap ${data.isAbout ? 'mt-3 md:mt-5' : ''}`">{{data.isAbout ? 'Компании' : 'Мнение'}}</span>
-    <span :class="data.isAbout ? 'mt-3 md:mt-5' : ''">{{ data.opinion }}</span>
+    <!-- Компании (только для isAbout) -->
+    <template v-if="data.isAbout">
+      <span class="whitespace-nowrap mt-3 md:mt-5">Компании</span>
+      <span class="mt-3 md:mt-5">{{ data.companies || '' }}</span>
+    </template>
   </div>
 </template>
 

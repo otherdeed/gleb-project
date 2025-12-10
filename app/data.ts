@@ -1,41 +1,59 @@
 export const data = [
   {
-    nextProject: 'Greek Legends',
-    previousProject: 'Big data house',
+    nextProject: 'Big data house',
+    previousProject: 'Uralgeo',
     title: 'Обо мне',
     year: 'Глеб Закиров',
-    online: '2005',
     tasks: 'Я дизайнер из Санкт-Петербурга. В основном делаю разного рода интерфейсы, сайты и приложения. Но помимо этого создаю моушн для своих работ. Работаю с печатью. Собираю сайты на Тильде. Умею делать несложные тридэшки. В последнее время изучаю html и css <br> Помимо всего, я учусь на инженера по техносферной безопасности, вкусно готовлю, жму сотку от груди, не боюсь выступать на сцене и с переменным успехом веду Телеграм канал',
     solution: 'Figma, Principle, Illustrator, Tilda, Photoshop, Blender',
-    result: 'Uralgeo, Greek Legend, Big Data House, Grokhotov studio, Зелёный вектор, Мегамаркет, Альфа-Страхование, Цифровая Лига, Summer Night Conf, Космостом, Simplex, Северсталь, Кировск.Гайд, Наутико, Курс Энди, Тимур.Фронтенд, Кэт, Nes',
-    opinion: 'Мегамаркет, Добропост, Альфа-Страхование, Северсталь, Марчеллис',
+    contribution: 'Uralgeo, Greek Legend, Big Data House, Grokhotov studio, Зелёный вектор, Мегамаркет, Альфа-Страхование, Цифровая Лига, Sumbig-data-houser Night Conf, Космостом, Simplex, Северсталь, Кировск.Гайд, Наутико, Курс Энди, Тимур.Фронтенд, Кэт, Nes',
+    companies: 'Мегамаркет, Добропост, Альфа-Страхование, Северсталь, Марчеллис',
     isAbout: true,
-    slides: ['/img/slide1.png', '/img/slide2.png']
+    slides: ['/img/me/slide1.jpg']
   },
   {
-    nextProject: 'Big data house',
-    previousProject: 'Обо мне',
-    title: 'Greek Legends',
-    year: '2023',
-    online: 'Лендинг для мифологической онлайн-игры',
-    tasks: 'Создание современного дизайна, отражающего эпическую атмосферу древнегреческих мифов. Разработка адаптивной версии для всех устройств. Интеграция с игровым API для отображения статистики игроков.',
-    solution: 'Использована цветовая палитра вдохновленная древнегреческим искусством. Анимированные SVG-иллюстрации богов Олимпа. Интерактивная карта Древней Греции. Система персонализации для игроков.',
-    result: 'Увеличение конверсии на 35%. Среднее время пребывания на сайте выросло до 4.5 минут. Проект получил награду "Лучший геймифицированный лендинг 2023". Более 10,000 регистраций в первый месяц.',
-    opinion: 'Клиент высоко оценил внимание к деталям и глубокое погружение в тематику. Особенно отметил анимированные элементы, которые повысили вовлеченность пользователей.',
-    isAbout: false,
-    slides: ['/img/slide3.png', '/img/slide4.png']
-  },
-  {
-    nextProject: 'Глеб Закиров',
+    nextProject: 'Greek Legends',
     previousProject: 'Обо мне',
     title: 'Big data house',
-    year: '2022',
-    online: 'Корпоративный портал для аналитики больших данных',
-    tasks: 'Разработка интуитивного интерфейса для визуализации сложных данных. Создание системы дашбордов для бизнес-аналитики. Обеспечение высокой производительности при работе с миллионами записей.',
-    solution: 'Модульная система компонентов для построения дашбордов. Темная тема для длительной работы с данными. Оптимизированные графики и диаграммы. Система экспорта отчетов в PDF/Excel.',
-    result: 'Сокращение времени на анализ данных на 60%. Внедрение позволило выявить скрытые бизнес-инсайты. Проект масштабирован на 5 филиалов компании. Интеграция с 15+ источниками данных.',
-    opinion: 'Заказчик отметил, что интерфейс стал эталоном для внутренних продуктов компании. Особенно оценили гибкость системы и скорость отклика.',
+    year: '2023-2024',
+    online: {
+      text: 'В разработке',
+    },
+    tasks: 'Сделать яркий цепляющий лендинг для бигдата-стартапа',
+    team: 'Grokhotov Studio',
+    solution: 'Я собрал яркий и запоминающийся сайт, который кратко и ясно рассказывает о каждом инструменте продукта <br> Из интересного — эмодзи, который сопутствует и пользователю, и клиенту в каждом инструменте. Что-то в роде Clippy <br> Проект был выполнен за 2 дня с учетом всех адаптивов и компонентов',
     isAbout: false,
-    slides: ['/img/slide5.png', '/img/slide6.png']
+    slides: ['/img/big-data-house/slide1.png', '/img/big-data-house/slide2.png', '/img/big-data-house/slide3.png', '/img/big-data-house/slide4.png', '/img/big-data-house/slide5.png', '/img/big-data-house/slide6.png']
+  },
+  {
+    nextProject: 'Uralgeo',
+    previousProject: 'Big data house',
+    title: 'Greek Legends',
+    year: '2025',
+    online: {
+      text: 'greeklegend.gr',
+      link: 'greeklegend.gr'
+    },
+    
+    tasks: 'Разработать для Greek Legend сайт, который будет транслировать премиальность и крафтовость бренда, а также станет точкой касания с потенциальным покупателем',
+    solution: 'Я разрабатывал дизайн некоторых страниц и рисовал иконки к проекту. Еще я сверстал дегустационную карту',
+    team: 'Evitan',
+    isAbout: false,
+    slides: ['/img/greek-legend/slide1.png', '/img/greek-legend/slide2.png', '/img/greek-legend/slide3.png', '/img/greek-legend/slide4.png', '/img/greek-legend/slide5.png', '/img/greek-legend/slide6.png', '/img/greek-legend/slide7.png']
+  },
+  {
+    nextProject: 'Обо мне',
+    previousProject: 'Greek Legends',
+    title: 'Uralgeo',
+    year: '2023-2024',
+    online: {
+      text: 'uralgeo.org',
+      link: 'uralgeo.org'
+    },
+    tasks: 'Разработать стильный, современный и сдержанный корпоративный сайт, отражающий ценности компании',
+    team: 'Evitan',
+    solution: 'Разработка прототипов, дизайн страниц, адаптация дизайна и потрясающая 404',
+    isAbout: false,
+    slides: ['/img/uralgeo/slide1.png', '/img/uralgeo/slide2.png', '/img/uralgeo/slide3.png', '/img/uralgeo/slide4.png', '/img/uralgeo/slide5.png', '/img/uralgeo/slide6.png']
   },
 ]
