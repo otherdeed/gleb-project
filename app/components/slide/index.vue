@@ -1,26 +1,19 @@
 <template>
   <div 
-    :class="isMobile ? 'flex flex-col' : 'grid grid-rows-[auto_1fr] sm:grid-rows-[auto_1fr] md:grid-cols-2 md:grid-rows-1'"
-    class="h-screen relative"
-  >
-    <!-- <div class="hidden md:flex flex-col justify-between p-3 md:p-5 absolute left-0 top-0 z-10 min-h-screen text-white">
-      <div class="flex flex-col">
-        <span>Глеб Закиров,</span>
-        <span>диджитал-дизайнер</span>
-      </div>
-      <div class="flex items-start">
-        <a>Телеграм</a>,
-        <a class="ml-1">Инстаграм</a>
-      </div>
-    </div> -->
-    
+    :class="[
+      'relative',
+      isMobile 
+        ? 'flex flex-col min-h-screen' 
+        : 'grid grid-rows-[auto_1fr] sm:grid-rows-[auto_1fr] md:grid-cols-2 md:grid-rows-1 h-screen overflow-hidden'
+    ]"
+  >     
     <div 
       ref="mainContentRef"
       :class="{
-        'overflow-y-auto': true,
+        'overflow-y-auto': !isMobile,
         'order-1 md:order-2 h-[70vh] sm:h-[40vh] md:h-full': !isMobile 
       }"
-      class="bg-white"
+      class="bg-white w-full"
     >
       <div :class="isMobile ? 'h-[80vh]' : 'h-full'">
         <About 
@@ -42,9 +35,12 @@
           <img 
             :src="slide" 
             :alt="`Slide ${index + 1} - ${data.title}`"
-            class="w-full h-full object-cover">
+            loading="lazy"
+            class="w-full h-auto object-cover" 
+          >
         </div>
       </div>
+
       <div v-if="isMobile" class="h-[140px]">
         <About 
           v-if="data"
