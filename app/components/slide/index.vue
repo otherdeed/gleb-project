@@ -38,13 +38,11 @@
           v-for="(slide, index) in data.slides"
           :key="index"
           class="w-full flex justify-center items-center bg-black"
-          :class="index === 0 ? 'aspect-4/3 h-auto' : 'aspect-4/3'"
         >  
           <img 
             :src="slide" 
             :alt="`Slide ${index + 1} - ${data.title}`"
-            class="w-full h-full"
-            :class="index === 0 ? 'object-contain' : 'object-cover'" />
+            class="w-full h-full object-cover">
         </div>
       </div>
       <div v-if="isMobile" class="h-[140px]">
