@@ -35,7 +35,7 @@
           <img 
             :src="slide" 
             :alt="`Slide ${index + 1} - ${data.title}`"
-            loading="lazy"
+            loading="eager"
             class="w-full h-auto object-cover" 
           >
         </div>
@@ -82,6 +82,7 @@
             <img 
               :src="slide" 
               :alt="`Slide ${index + 1} - ${data.title}`"
+              loading="eager"
               class="absolute inset-0 w-full h-full object-cover"
             />
           </div>
