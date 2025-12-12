@@ -31,9 +31,7 @@
     <span :class="['whitespace-nowrap', data.isAbout ? 'mt-3 md:mt-5' : '']">
       {{ data.isAbout ? 'Навыки' : 'Решение' }}
     </span>
-    <span :class="data.isAbout ? 'mt-3 md:mt-5' : ''">
-      {{ data.solution || '' }}
-    </span>
+    <div :class="data.isAbout ? 'mt-3 md:mt-5' : ''" v-html="data.solution || ''" />
 
     <!-- Команда/Проекты -->
     <template v-if="!data.isAbout">
